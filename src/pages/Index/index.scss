@@ -1,0 +1,15 @@
+// sass 可以嵌套
+.index {
+  .hezu {
+    text-align: center;
+    margin-top: 10px;
+    img {
+      width: 48px;
+      height: 48px;
+    }
+    h2 {
+      font-size: 13px;
+      font-weight: normal;
+    }
+  }
+}

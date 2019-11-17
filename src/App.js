@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+
+import { Button } from "antd-mobile"
+import Home from './pages/Home';
+import Citylist from './pages/Citylist';
+
+
+
+
+function App () {
+  return <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* 匹配重定向到 /home/index */}
+      <Route
+        exact // 精确匹配 只有当 / 才跳转
+        path="/"
+        render={() => {
+          return <Redirect to="/home/index"></Redirect>
+        }}
+      ></Route>
+      {/* 配置 /home <Route path='/路径' component={Home}></Route> */}
+      <Route path='/home' component={Home}></Route>
+      {/* 城市列表 /citylist */}
+      <Route path='/citylist' component={Citylist}></Route>
+
+      <Button type="primary">primary</Button>
+
     </div>
-  );
+  </Router>
+
 }
 
 export default App;
