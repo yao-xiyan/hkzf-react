@@ -1,5 +1,6 @@
 // sass 可以嵌套
 .index {
+  padding-bottom: 50px;
   .hezu {
     text-align: center;
     margin-top: 10px;
@@ -10,6 +11,152 @@
     h2 {
       font-size: 13px;
       font-weight: normal;
+    }
+  }
+
+  // 租房小组
+  .groups {
+    background-color: #f5f6f5;
+    padding: 0 10px;
+    overflow: hidden;
+    .groups-title {
+      margin: 15px 0;
+      display: flex;
+      // 两边排列
+      justify-content: space-between;
+      h2 {
+        font-size: 15px;
+      }
+    }
+    .am-grid {
+      .am-flexbox {
+        margin-bottom: 10px;
+        background-color: transparent;
+
+        .am-flexbox-item {
+          .am-grid-item-content {
+            height: 85px;
+            padding: 12px 0;
+          }
+        }
+
+        .am-grid-item {
+          margin-right: 0;
+          background-color: #fff;
+
+          &:first-child {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    .grid-item {
+      padding: 0 13px;
+
+      .desc {
+        h3 {
+          margin-bottom: 5px;
+          font-size: 13px;
+        }
+
+        p {
+          color: #999;
+          font-size: 12px;
+        }
+      }
+
+      img {
+        width: 55px;
+      }
+    }
+  }
+
+  // 最新资讯样式
+  .news {
+    padding: 0 15px;
+    // & 代表 父亲 .news
+    &-title {
+      margin-top: 15px;
+      font-weight: 700;
+    }
+
+    .news-item {
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid #ccc;
+      img {
+        width: 120px;
+        height: 90px;
+      }
+      .list-right {
+        margin-left: 5px;
+        position: relative;
+        h2 {
+          font-size: 15px;
+          margin: 0;
+        }
+        p {
+          position: absolute;
+          bottom: 0;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          color: #ccc;
+        }
+      }
+    }
+  }
+  /* 顶部导航： */
+  .searchBox {
+    position: absolute;
+    top: 25px;
+    z-index: 1;
+    width: 100%;
+    padding: 0 10px;
+
+    // 全局类名
+
+    .icon-map {
+      font-size: 25px;
+      color: #fff;
+    }
+  }
+
+  .searchLeft {
+    flex: 1;
+    height: 34px;
+    padding: 5px 5px 5px 8px;
+    margin: 0 10px;
+    border-radius: 3px;
+    background-color: #fff;
+  }
+
+  .location {
+    span {
+      font-size: 14px;
+    }
+
+    .icon-arrow {
+      margin-left: 2px;
+      font-size: 12px;
+      color: #7f7f80;
+    }
+  }
+  .searchForm {
+    margin-left: 12px;
+    border-left: 1px solid #e5e5e5;
+
+    .icon-seach {
+      vertical-align: middle;
+      padding: 0 2px 0 12px;
+      color: #9c9fa1;
+      font-size: 15px;
+    }
+    span {
+      padding-left: 4px;
+      font-size: 13px;
+      color: #9c9fa1;
     }
   }
 }

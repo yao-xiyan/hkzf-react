@@ -2,10 +2,10 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
-import { Button } from "antd-mobile"
+// import { Button } from "antd-mobile"
 import Home from './pages/Home';
 import Citylist from './pages/Citylist';
-
+import Map from './pages/Map'
 
 
 
@@ -25,7 +25,9 @@ function App () {
       {/* 城市列表 /citylist */}
       <Route path='/citylist' component={Citylist}></Route>
 
-      <Button type="primary">primary</Button>
+      <Route path='/map' component={Map}></Route>
+
+      {/* <Button type="primary">primary</Button> */}
 
     </div>
   </Router>

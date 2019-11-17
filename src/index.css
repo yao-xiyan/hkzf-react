@@ -5,7 +5,7 @@ html,
 body {
   font-family: 'Microsoft YaHei';
   color: #333;
-  background-color: yellow;
+  background-color: white;
 }
 
 html,
@@ -24,6 +24,8 @@ body {
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 
   /* 
