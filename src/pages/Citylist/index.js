@@ -1,10 +1,11 @@
 import React from 'react'
-import { NavBar, Icon, Toast } from 'antd-mobile'
+import { Toast } from 'antd-mobile'
 import axios from 'axios'
 import './citylist.scss'
 
 import { AutoSizer, List } from 'react-virtualized';
 
+import NavHeader from '../../components/NavHeader'
 // 导入封装的函数
 import { getCurrentCity } from '../../utils/index'
 // import { start } from 'repl';
@@ -193,16 +194,7 @@ export default class Citylist extends React.Component {
   render () {
     return <div className="citylist">
       {/* 导航栏 */}
-      < NavBar
-        className="navbar"
-        mode="light"
-        icon={< Icon type="left" />}
-        onLeftClick={() => this.props.history.go(-1)}
-      // rightContent={[
-      //   <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-      //   <Icon key="1" type="ellipsis" />,
-      // ]}
-      > 城市选择</NavBar >
+      <NavHeader>城市列表</NavHeader>
       {/* rowHeight ({ index: number }): number */}
       {/* 函数  里面有个参数 是对象 有个 index 是数字 number 类型 */}
 
