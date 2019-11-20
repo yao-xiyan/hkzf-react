@@ -1,5 +1,6 @@
 import React from 'react'
 import './map.scss'
+import { NavBar, Icon } from 'antd-mobile'
 // react 中 使用百度地图 不能直接用 BMap 需要使用 window.BMap
 let BMap = window.BMap
 export default class Map extends React.Component {
@@ -20,6 +21,16 @@ export default class Map extends React.Component {
   }
   render () {
     return <div className="map">
+      < NavBar
+        className="navbar"
+        mode="light"
+        icon={< Icon type="left" />}
+        onLeftClick={() => this.props.history.go(-1)}
+      // rightContent={[
+      //   <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
+      //   <Icon key="1" type="ellipsis" />,
+      // ]}
+      > 地图找房</NavBar >
       {/* 准备个盒子 放地图 */}
       <div id="container">
 

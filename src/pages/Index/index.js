@@ -1,7 +1,7 @@
 import React from 'react'
 // 导入 Carousel 走马灯
 import { Carousel, Flex, Grid } from 'antd-mobile';
-
+import { getCurrentCity } from '../../utils/index'
 // 导入 axios
 import axios from 'axios'
 import nav1 from '../../assets/images/nav-1.png'
@@ -36,30 +36,36 @@ export default class Index extends React.Component {
     news: [], // 最新资讯
     cityName: '' // 城市名字
   }
-  componentDidMount () {
+  async componentDidMount () {
     // 发送 ajax 获取轮播图数据
     this.getSwiper()
     // 发送 ajax 获取租房小组数据
     this.getGroups()
     // 发送 ajax 获取最新资讯数据
     this.getNews()
+
     // 根据 ip 获取当前城市
-    this.getCurrentCity()
+    // 用组件封装的 方法
+    let position = await getCurrentCity()
+
+    this.setState({
+      cityName: position.label
+    })
 
   }
 
-  async getCurrentCity () {
-    // 根据 ip 获取 当前城市
-    var myCity = new window.BMap.LocalCity();
-    await myCity.get((result) => {
-      var cityName = result.name;
-      // window.map.setCenter(cityName);
-      // alert("当前定位城市:" + cityName);
-      this.setState({
-        cityName: cityName.substring(0, cityName.length - 1)
-      })
-    });
-  }
+  // async getCurrentCity () {
+  //   // 根据 ip 获取 当前城市
+  //   var myCity = new window.BMap.LocalCity();
+  //   await myCity.get((result) => {
+  //     var cityName = result.name;
+  //     // window.map.setCenter(cityName);
+  //     // alert("当前定位城市:" + cityName);
+  // this.setState({
+  //   cityName: cityName.substring(0, cityName.length - 1)
+  // })
+  //   });
+  // }
 
   // 发送 ajax 获取最新资讯数据
 
