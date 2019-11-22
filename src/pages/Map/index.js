@@ -139,9 +139,21 @@ export default class Map extends React.Component {
         } else if (zoom === 15) {// 不进去了 显示房子列表
 
           console.log("这里要发送ajax 去获取街道小区的 房子列表")
-          this.setState({
-            isShowList: true
-          })
+          // 移动地图到中心店位置
+          let clickX = e.changedTouches[0].clientX
+          let clickY = e.changedTouches[0].clientY
+          // 中心点y=（屏幕高度-房子列表高）/2
+          // 中心点x = 屏幕宽度/2
+          let centerX = window.innerWidth / 2
+          let centerY = (window.innerHeight - 330) / 2
+
+          // 移动的距离
+          let distanceX = centerX - clickX
+          let distanceY = centerY - clickY
+
+          console.log(distanceX, distanceY);
+          // 移动地图
+          this.map.panBy(distanceX, distanceY)
           this.gethouselist(value)
           return;
         }
@@ -151,6 +163,13 @@ export default class Map extends React.Component {
       this.map.addOverlay(label);
     })
 
+    // 绑定地图移动事件
+    this.map.addEventListener('movestart', () => {
+      // 隐藏 房屋列表
+      this.setState({
+        isShowList: false
+      })
+    })
   }
 
   // 发送 ajax 获取房子列表
@@ -161,8 +180,14 @@ export default class Map extends React.Component {
     console.log('房子列表', data);
     this.setState({
       count: data.data.body.count,
-      houselist: data.data.body.list
+      houselist: data.data.body.list,
+      // 显示列表
+      isShowList: true
     })
+    // // 显示列表
+    // this.setState({
+
+    // })
   }
 
 
