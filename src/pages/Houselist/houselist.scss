@@ -1,0 +1,14 @@
+// 全局 需要加上前缀  免得影响其他的
+.search {
+  background-color: #eee;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  .searchBox {
+    position: relative;
+    top: 0;
+  }
+  .icon-map {
+    color: green;
+  }
+}
