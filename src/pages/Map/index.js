@@ -46,7 +46,6 @@ export default class Map extends React.Component {
         this.map.addControl(new BMap.ScaleControl()); // 比例尺
         // map.addControl(new BMap.OverviewMapControl());    
         // map.addControl(new BMap.MapTypeControl());     // 地图卫星
-
         this.renderOverlay(city.value, 'cycle')
 
       }

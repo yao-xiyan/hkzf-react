@@ -1,6 +1,6 @@
 import React from 'react'
 import { Toast } from 'antd-mobile'
-import axios from 'axios'
+// import axios from 'axios'
 import './citylist.scss'
 
 import { AutoSizer, List } from 'react-virtualized';
@@ -8,6 +8,9 @@ import { AutoSizer, List } from 'react-virtualized';
 import NavHeader from '../../components/NavHeader'
 // 导入封装的函数
 import { getCurrentCity } from '../../utils/index'
+
+// 导入修改后的axios
+import { API } from '../../utils/API'
 // import { start } from 'repl';
 
 // const list = [];
@@ -32,13 +35,13 @@ export default class Citylist extends React.Component {
   }
 
   async getCitylist () {
-    let data = await axios.get('http://localhost:8080/area/city?level=1')
+    let data = await API.get('/area/city?level=1')
     console.log('城市列表数据', data);
     // 1、调用函数城市列表 和 字母列表
     let { citylist, cityindex } = this.formatCity(data.data.body)
 
     // 2、发送 ajax 获取热门城市
-    let hotRes = await axios.get('http://localhost:8080/area/hot')
+    let hotRes = await API.get('/area/hot')
 
     console.log("热门城市", hotRes);
 

@@ -3,12 +3,13 @@ import React from 'react'
 import { Carousel, Flex, Grid } from 'antd-mobile';
 import { getCurrentCity } from '../../utils/index'
 // 导入 axios
-import axios from 'axios'
+// import axios from 'axios'
 import nav1 from '../../assets/images/nav-1.png'
 import nav2 from '../../assets/images/nav-2.png'
 import nav3 from '../../assets/images/nav-3.png'
 import nav4 from '../../assets/images/nav-4.png'
 
+import { API } from '../../utils/API'
 import '../../index.css'
 import './index.scss'
 // 图标 右键 --服务管理器-》mysql -》启动 变绿
@@ -70,7 +71,7 @@ export default class Index extends React.Component {
   // 发送 ajax 获取最新资讯数据
 
   async getNews () {
-    let data = await axios.get('http://localhost:8080/home/news?area=AREA%7C88cff55c-aaa4-e2e0')
+    let data = await API.get('/home/news?area=AREA%7C88cff55c-aaa4-e2e0')
     console.log('最新资讯数据', data);
     if (data.data.status !== 200) {
       console.log("获取最新资讯数据错误");
@@ -84,7 +85,7 @@ export default class Index extends React.Component {
 
   // 发送 ajax 获取租房小组数据
   async getGroups () {
-    let data = await axios.get("http://localhost:8080/home/groups?area=AREA%7C88cff55c-aaa4-e2e0")
+    let data = await API.get("/home/groups?area=AREA%7C88cff55c-aaa4-e2e0")
     console.log("租房小组数据", data)
     if (data.data.status !== 200) {
       console.log("获取租房小组数据错误")
@@ -100,7 +101,7 @@ export default class Index extends React.Component {
   }
   // 发送 ajax 获取轮播图数据
   async getSwiper () {
-    let data = await axios.get("http://localhost:8080/home/swiper")
+    let data = await API.get("/home/swiper")
     console.log("轮播图数据", data);
     // 解构 吧数据赋值
     this.setState({
