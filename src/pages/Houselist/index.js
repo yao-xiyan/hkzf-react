@@ -9,9 +9,11 @@ import { getCurrentCity } from '../../utils/index'
 
 import Filter from './components/Filter'
 
+
+
 export default class Houselist extends React.Component {
   state = {
-    cityname: ''
+    cityname: '',
   }
   async componentDidMount () {
     let city = await getCurrentCity()
@@ -21,6 +23,7 @@ export default class Houselist extends React.Component {
   }
   render () {
     return <div className='Houselist'>
+
       {/* 导航栏 */}
       <div className="search">
         <i className="iconfont icon-back"></i>
@@ -28,7 +31,10 @@ export default class Houselist extends React.Component {
         <SearchHeader cityname={this.state.cityname}></SearchHeader>
       </div>
       {/* 筛选部分 */}
+      {/* 标题栏 */}
       <Filter></Filter>
+
+
     </div>
   }
 }
