@@ -88,15 +88,39 @@ const province = [
 ]
 
 export default class FilterPicker extends Component {
+  state = {
+    // 默认选中值 写null 不太合适 我们这三个有一个初始值
+    val: this.props.defaultValue
+  }
+
+
+
   render () {
-    let { onCancel, onSave, data, cols } = this.props
+    let { onCancel, onSave, data, cols, type } = this.props
     return (
       <>
         {/* 选择器组件： */}
-        <PickerView data={data} value={null} cols={cols} />
+        <PickerView
+          data={data}
+          value={this.state.val}
+          cols={cols}
+          onChange={(val) => {
+            console.log('选择的值', val, type);
+            this.setState({
+              val: val
+            })
+          }}
+        />
 
         {/* 底部按钮 */}
-        <FilterFooter onCancel={onCancel} onSave={onSave} />
+        <FilterFooter
+          onCancel={() => {
+            onCancel(type)
+          }}
+          onSave={() => {
+            onSave(type, this.state.val)
+          }}
+        />
       </>
     )
   }
