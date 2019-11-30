@@ -99,6 +99,7 @@ export default class Filter extends Component {
 
   }
 
+
   // 取消函数
   onCancel = (type) => {
     let { titleSelectedStatus, selectedValues } = this.state
@@ -216,12 +217,33 @@ export default class Filter extends Component {
     return null; // 不显示任何东西
   }
 
+  /**
+  * -area:{label: "区域", value: "area", children: Array(13)}
+   characteristic: 房屋特点 (13) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+   floor:(3) [{…}, {…}, {…}] 楼层
+   oriented: 朝向 (8) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+   -price:(8) 租金 [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+   -rentType: 方式 (3) [{…}, {…}, {…}]
+   roomType:(5) 房间类型 [{…}, {…}, {…}, {…}, {…}]
+   -subway:'{label: "地铁", value: "subway", children: Array(23)}
+  */
   // 显示 filtermore
   renderMore () {
+    // 解构数据
+    let { characteristic, floor, oriented, roomType } = this.state.filterdata
     // 如果点了筛选 more 就显示 其他隐藏
     let { openType } = this.state
     if (openType === 'more') {
-      return <FilterMore />
+      // 把数据传进去
+      let data = {
+        characteristic,
+        floor,
+        oriented,
+        roomType
+      }
+      return <FilterMore
+        data={data}
+      />
     }
     return null
   }
