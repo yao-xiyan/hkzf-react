@@ -5,13 +5,46 @@ import FilterFooter from '../../../../components/FilterFooter'
 import styles from './index.module.css'
 
 export default class FilterMore extends Component {
+
+  state = {
+    values: [] // 空数组
+  }
+  // 点击 span
+  onTagClick = (id) => {
+    // 点谁 没有 就加上 有就取消
+    let newValues = [...this.state.values]
+    if (newValues.indexOf(id) === -1) {
+      newValues.push(id)
+    } else { // 有的话删除
+      // findIndex 查找数组 返回满足条件的哪项的索引
+      let index = newValues.findIndex(item => {
+        return item = id
+      })
+      newValues.splice(index, 1)
+    }
+    console.log("value", newValues);
+
+    // 赋值
+    this.setState({
+      values: newValues
+    })
+  }
   // 渲染标签
   renderFilters (arr) {
     // 高亮类名： styles.tagActive
     return (
       // span 就是每一项方格
       arr.map(item => {
-        return < span key={item.value} className={[styles.tag, styles.tagActive].join(' ')} >
+        // 数组里面又这个值 那么span就要选中
+        let isselected = this.state.values.indexOf(item.value) !== -1
+        return < span
+          key={item.value}
+          // , styles.tagActive
+          className={[styles.tag, isselected ? styles.tagActive : ''].join(' ')}
+          onClick={() => {
+            this.onTagClick(item.value)
+          }}
+        >
           {item.label}
         </span >
       })
@@ -21,7 +54,7 @@ export default class FilterMore extends Component {
   render () {
     // 接受传来的参数
     // characteristic 房屋特点, floor 楼层, oriented 朝向, roomType 房间类型
-    let data = this.props.data
+    let { data } = this.props
     console.log('接受的data', data);
 
     return (
